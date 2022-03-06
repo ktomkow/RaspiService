@@ -1,0 +1,51 @@
+{
+  "name": "raspi-bt-mobile",
+  "version": "0.0.1",
+  "description": "A Quasar Framework app",
+  "productName": "RaspiService",
+  "author": "ktomkow <krzysztof.tomkow@gmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev -m capacitor -T android",
+    "build": "quasar build -m capacitor -T android"
+  },
+  "dependencies": {
+    "@quasar/cli": "^1.2.2",
+    "@quasar/extras": "^1.12.5",
+    "axios": "^0.26.0",
+    "core-js": "^3.21.1",
+    "quasar": "^2.5.5",
+    "vue": "^3.2.31",
+    "vue-i18n": "^9.1.9",
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "@quasar/app": "^3.3.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-vue": "^7.20.0",
+    "eslint-webpack-plugin": "^2.4.0",
+    "prettier": "^2.5.1"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 12.22.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

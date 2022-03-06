@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RaspiService</string>
+    <string name="title_activity_main">RaspiService</string>
+    <string name="package_name">ktomkow.raspi.mobile</string>
+    <string name="custom_url_scheme">ktomkow.raspi.mobile</string>
+</resources>

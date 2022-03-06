@@ -1,0 +1,7 @@
+{
+  "appId": "ktomkow.raspi.mobile",
+  "appName": "RaspiService",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}
