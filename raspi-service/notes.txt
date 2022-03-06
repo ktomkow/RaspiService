@@ -1,4 +1,0 @@
-sudo hciconfig hci0 up 
-
-sudo systemctl stop bluetooth 
-sudo systemctl disable bluetooth
