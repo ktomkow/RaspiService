@@ -1,15 +1,18 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const si = require('systeminformation');
 
 app.get('/', function (req, res) {
   
   res.sendFile(__dirname + '/index.html');
 });
 
-setInterval(() => {
+setInterval(async() => {
+  const data = await si.cpu();
   console.log('Interval happened', new Date());
-  io.sockets.emit('greetings', { data: { text: 'hello' }, number: 5 });
+  console.log(data);
+  io.sockets.emit('cpu', data);
 }, 5000);
 
 //Whenever someone connects this gets executed
