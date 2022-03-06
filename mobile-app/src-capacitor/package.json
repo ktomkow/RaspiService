@@ -1,7 +1,7 @@
 {
-  "name": "raspi-bt-mobile",
+  "name": "raspi-service-mobile",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
+  "description": "A Quasar Framework based app to check raspberry cpu and memory load",
   "author": "ktomkow <krzysztof.tomkow@gmail.com>",
   "private": true,
   "dependencies": {
