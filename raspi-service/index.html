@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Hello world</title>
-   </head>
-   <script src = "/socket.io/socket.io.js"></script>
-   
-   <script>
-      const socket = io();
-   </script>
-   <body>Hello</body>
+  <head>
+    <title>Hello world</title>
+  </head>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    const socket = io('http://localhost:3003');
+    socket.on('connect', () => {
+      console.log('Successfully connected!');
+    });
+    socket.connect();
+
+    socket.on('greetings', (data) => {
+      console.log(data);
+    });
+  </script>
+  <body>
+    Hello
+  </body>
 </html>

@@ -3,7 +3,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 app.get('/', function (req, res) {
-  res.send('<h1>Hello</h1>');
+  
+  res.sendFile(__dirname + '/index.html');
 });
 
 setInterval(() => {
