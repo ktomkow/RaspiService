@@ -45,7 +45,7 @@ export default {
     }
 
     const tryConnect = () => {
-     store.dispatch("socket", "http:192.168.0.168:3003")
+     store.dispatch("socket/connect", "http://192.168.0.168:3003")
     }
 
     return { ...toRefs(state), tryFunc, tryConnect};
