@@ -44,12 +44,6 @@ const linksList = [
     link: "/",
   },
   {
-    title: "Scan",
-    caption: "Find and connect Raspberry",
-    icon: "bluetooth_searching",
-    link: "scan",
-  },
-  {
     title: "Connect",
     caption: "Find and connect to Raspberry",
     icon: "link",
