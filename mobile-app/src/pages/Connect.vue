@@ -6,6 +6,11 @@
         label="tryFunc"
         @click="tryFunc"
       />
+      <q-btn
+        color="warning"
+        label="try connect"
+        @click="tryConnect"
+      />
     </div>
   </q-page>
 </template>
@@ -39,7 +44,11 @@ export default {
       emitter.emit('try', "jestem niemową, dupa dupa dupa")
     }
 
-    return { ...toRefs(state), tryFunc};
+    const tryConnect = () => {
+     store.dispatch("socket", "http:192.168.0.168:3003")
+    }
+
+    return { ...toRefs(state), tryFunc, tryConnect};
   },
 };
 </script>
