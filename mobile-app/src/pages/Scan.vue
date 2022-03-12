@@ -44,6 +44,11 @@
         @click="disconnect"
         :loading="disconnecting"
       />
+      <q-btn
+        color="warning"
+        label="tryFunc"
+        @click="tryFunc"
+      />
     </div>
   </q-page>
 </template>
@@ -54,6 +59,7 @@ import { useStore } from "vuex";
 import { BleClient } from "@capacitor-community/bluetooth-le";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
+import { inject } from 'vue';
 
 export default {
   name: "Scan",
@@ -68,6 +74,7 @@ export default {
     const store = useStore();
     const $q = useQuasar();
     const router = useRouter();
+    const emitter = inject('emitter');
     const scan = async () => {
       try {
         state.isLoading = true;
@@ -162,7 +169,11 @@ export default {
       }
     };
 
-    return { ...toRefs(state), scan, select, connect, disconnect };
+    const tryFunc = () => {
+      emitter.emit('try', "jestem niemową, dupa dupa dupa")
+    }
+
+    return { ...toRefs(state), scan, select, connect, disconnect, tryFunc };
   },
 };
 </script>
