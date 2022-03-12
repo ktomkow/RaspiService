@@ -2,7 +2,8 @@ import { emitter } from "src/boot/eventBus";
 import { io } from "socket.io-client";
 
 export function connect(context, address) {
-  const socket = io(address);
+  const socket = io(address, {transports: ['websocket']});
+
 
   socket.on("connect", () => {
     console.log("Socket connected, id: ", socket.id);
