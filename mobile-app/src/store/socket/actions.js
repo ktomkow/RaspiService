@@ -1,9 +1,14 @@
 import { emitter } from "src/boot/eventBus";
+import { io } from "socket.io-client";
 
 export function connect(context, address) {
   const socket = io(address);
-  context.commit("setAddress", address);
-  context.commit("setSocket", socket);
+
+  socket.on("connect", () => {
+    console.log("Socket connected, id: ", socket.id);
+    context.commit("setAddress", address);
+    context.commit("setSocket", socket);
+  });
 }
 
 export function disconnect(context) {
