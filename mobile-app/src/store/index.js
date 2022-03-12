@@ -1,6 +1,5 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
-import bt from "./bt";
 import settings from "./settings";
 import socket from "./socket";
 
