@@ -5,7 +5,6 @@
   "author": "ktomkow <krzysztof.tomkow@gmail.com>",
   "private": true,
   "dependencies": {
-    "@capacitor-community/bluetooth-le": "^1.8.0",
     "@capacitor/android": "^3.4.1",
     "@capacitor/app": "^1.1.0",
     "@capacitor/cli": "^3.4.1",

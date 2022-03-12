@@ -49,6 +49,12 @@ const linksList = [
     icon: "bluetooth_searching",
     link: "scan",
   },
+  {
+    title: "Connect",
+    caption: "Find and connect to Raspberry",
+    icon: "link",
+    link: "connect",
+  },
 ];
 
 import { defineComponent, ref } from "vue";

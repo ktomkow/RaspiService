@@ -1,6 +1,8 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
 import bt from "./bt";
+import settings from "./settings";
+import socket from "./socket";
 
 /*
  * If not building with SSR mode, you can
@@ -14,7 +16,8 @@ import bt from "./bt";
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      bt,
+      settings,
+      socket
     },
 
     // enable strict mode (adds overhead!)
