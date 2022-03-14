@@ -38,8 +38,6 @@ export default {
     const router = useRouter();
     const emitter = inject('emitter');
 
-
-
     const tryFunc = () => {
       emitter.emit('try', "jestem niemową, dupa dupa dupa")
     }

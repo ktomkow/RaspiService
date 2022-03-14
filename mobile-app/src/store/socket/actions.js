@@ -2,13 +2,17 @@ import { emitter } from "src/boot/eventBus";
 import { io } from "socket.io-client";
 
 export function connect(context, address) {
-  const socket = io(address, {transports: ['websocket']});
-
+  const socket = io(address, { transports: ["websocket"] });
 
   socket.on("connect", () => {
     console.log("Socket connected, id: ", socket.id);
     context.commit("setAddress", address);
     context.commit("setSocket", socket);
+  });
+
+  socket.on("cpu", (data) => {
+    console.log("Got CPU", data);
+    emitter.emit("cpu", data);
   });
 }
 
