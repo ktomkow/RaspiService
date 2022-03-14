@@ -70,7 +70,7 @@ export default {
     const router = useRouter();
 
     const connect = () => {
-      store.dispatch("socket/connect", "http://" + state.address + ":" + port);
+      store.dispatch("socket/connect", "http://" + state.address + ":" + state.port);
     };
 
     const disconnect = () => {
