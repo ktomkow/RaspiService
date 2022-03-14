@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 
 export function connect(context, address) {
   const socket = io(address, { transports: ["websocket"] });
+  disconnect(context);
 
   socket.on("connect", () => {
     console.log("Socket connected, id: ", socket.id);
@@ -21,7 +22,12 @@ export function connect(context, address) {
 }
 
 export function disconnect(context) {
+  if (context.state.socket) {
+    context.commit("callDisconnect");
+  }
+
   context.commit("setAddress", null);
   context.commit("setSocket", null);
-}
 
+  console.log("Socket disconnected");
+}
