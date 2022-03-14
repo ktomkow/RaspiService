@@ -49,6 +49,12 @@ const linksList = [
     icon: "link",
     link: "connect",
   },
+    {
+    title: "Cpu",
+    caption: "Cpu related stuff",
+    icon: "bolt",
+    link: "cpu",
+  },
 ];
 
 import { defineComponent, ref } from "vue";
