@@ -1,15 +1,43 @@
 <template>
-  <q-page class="flex column justify-between">
-    <div class="flex column">
+  <q-page class="flex column justify-around">
+    <h5 class="text-center">Connect to Raspberry</h5>
+    <div class="flex column full-width q-py-xl q-px-lg">
+      <div class="flex row justify-between q-mb-md">
+        <q-select
+          class="col-9"
+          dense
+          outlined
+          label="Service address"
+          v-model="address"
+        >
+          <template v-slot:prepend>
+            <span class="text-overline">http://</span>
+          </template>
+        </q-select>
+        <q-input
+          class="col-3 q-pl-sm"
+          dense
+          outlined
+          v-model="port"
+          type="number"
+          label="Port"
+        />
+      </div>
       <q-btn
-        color="warning"
-        label="tryFunc"
-        @click="tryFunc"
+        outline
+        rounded
+        size="xl"
+        class="q-mb-md"
+        color="positive"
+        label="connect"
+        @click="connect"
       />
       <q-btn
-        color="warning"
-        label="try connect"
-        @click="tryConnect"
+        outline
+        rounded
+        color="negative"
+        label="disconnect"
+        @click="disconnect"
       />
     </div>
   </q-page>
@@ -20,7 +48,7 @@ import { toRefs, reactive } from "vue";
 import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
-import { inject } from 'vue';
+import { inject } from "vue";
 
 export default {
   name: "Connect",
@@ -31,24 +59,26 @@ export default {
       selected: null,
       isLoading: false,
       found: [],
+      port: 3003,
+      address: "192.168.0.168:3003",
     });
 
     const store = useStore();
     const $q = useQuasar();
     const router = useRouter();
-    const emitter = inject('emitter');
+    const emitter = inject("emitter");
 
-    const tryFunc = () => {
-      emitter.emit('try', "jestem niemową, dupa dupa dupa")
-    }
+    const connect = () => {
+      store.dispatch("socket/connect", "http://" + state.address);
+    };
 
-    const tryConnect = () => {
-     store.dispatch("socket/connect", "http://192.168.0.168:3003")
-    }
+    const disconnect = () => {
+      store.dispatch("socket/disconnect");
+    };
 
-    return { ...toRefs(state), tryFunc, tryConnect};
+    return { ...toRefs(state), connect, disconnect };
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
