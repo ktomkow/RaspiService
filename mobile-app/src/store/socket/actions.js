@@ -11,7 +11,7 @@ export function connect(context, address) {
   });
 
   socket.on("disconnect", () => {
-    disconnectSocket();
+    disconnect(context);
   });
 
   socket.on("cpu", (data) => {
@@ -21,10 +21,7 @@ export function connect(context, address) {
 }
 
 export function disconnect(context) {
-  disconnectSocket();
-}
-
-const disconnectSocket = () => {
   context.commit("setAddress", null);
   context.commit("setSocket", null);
-};
+}
+
