@@ -10,6 +10,10 @@ export function connect(context, address) {
     context.commit("setSocket", socket);
   });
 
+  socket.on("disconnect", () => {
+    disconnectSocket();
+  });
+
   socket.on("cpu", (data) => {
     console.log("Got CPU", data);
     emitter.emit("cpu", data);
@@ -17,6 +21,10 @@ export function connect(context, address) {
 }
 
 export function disconnect(context) {
+  disconnectSocket();
+}
+
+const disconnectSocket = () => {
   context.commit("setAddress", null);
   context.commit("setSocket", null);
-}
+};
