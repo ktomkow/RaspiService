@@ -11,7 +11,15 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Raspberry Bluetooth Service </q-toolbar-title>
+        <q-toolbar-title>
+          <span>Raspberry Bluetooth Service</span>
+          <q-icon
+            name="swap_horiz"
+            size="sm"
+            class="q-px-sm"
+            :color="connectionStatusColor"
+          />
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -49,7 +57,7 @@ const linksList = [
     icon: "link",
     link: "connect",
   },
-    {
+  {
     title: "Cpu",
     caption: "Cpu related stuff",
     icon: "bolt",
@@ -57,7 +65,8 @@ const linksList = [
   },
 ];
 
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "MainLayout",
@@ -67,11 +76,19 @@ export default defineComponent({
   },
 
   setup() {
+    const store = useStore();
+
     const leftDrawerOpen = ref(false);
+    const connectionStatusColor = computed(() => {
+      const isAlive = store.getters["socket/isAlive"];
+
+      return isAlive ? "positive" : "negative";
+    });
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
+      connectionStatusColor,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
