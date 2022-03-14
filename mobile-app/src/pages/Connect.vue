@@ -9,8 +9,9 @@
           outlined
           label="Service address"
           v-model="address"
+          :options="options"
         >
-          <template v-slot:prepend>
+          <template v-slot:prepend class="flex column">
             <span class="text-overline">http://</span>
           </template>
         </q-select>
@@ -60,16 +61,16 @@ export default {
       isLoading: false,
       found: [],
       port: 3003,
-      address: "192.168.0.168:3003",
+      address: "192.168.0.168",
+      options: ["192.168.0.168"],
     });
 
     const store = useStore();
     const $q = useQuasar();
     const router = useRouter();
-    const emitter = inject("emitter");
 
     const connect = () => {
-      store.dispatch("socket/connect", "http://" + state.address);
+      store.dispatch("socket/connect", "http://" + state.address + ":" + port);
     };
 
     const disconnect = () => {
@@ -80,5 +81,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
