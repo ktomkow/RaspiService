@@ -1,5 +1,10 @@
 <template>
-  <q-page class="bg-red-1"> {{ cpuData }} </q-page>
+  <q-page class="q-pa-lg">
+    <div v-for="item in cpuData" :key="item.key">
+      <span class="text-overline">{{ item.key }}</span> :
+      <span>{{ item.value }}</span>
+    </div>
+  </q-page>
 </template>
 
 <script>
@@ -9,7 +14,7 @@ export default {
   name: "Cpu",
   setup() {
     const state = reactive({
-      cpuData: null,
+      cpuData: [],
     });
 
     const emitter = inject("emitter");
@@ -17,7 +22,10 @@ export default {
     onMounted(() => {
       emitter.on("cpu", (data) => {
         console.warn("data", data);
-        state.cpuData = data;
+        state.cpuData = [];
+        Object.keys(data).forEach((key) => {
+          state.cpuData.push({ key: key, value: data[key] });
+        });
       });
     });
 

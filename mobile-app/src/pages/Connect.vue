@@ -49,7 +49,6 @@ import { toRefs, reactive } from "vue";
 import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
-import { inject } from "vue";
 
 export default {
   name: "Connect",
