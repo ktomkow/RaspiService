@@ -13,6 +13,7 @@
       <div class="flex row justify-between no-wrap q-mb-md">
         <q-input
           dense
+          clearable
           outlined
           label="Service address"
           v-model="newAddress"
@@ -61,10 +62,9 @@
 </template>
 
 <script>
-import { toRefs, reactive } from "vue";
+import { toRefs, reactive, onMounted } from "vue";
 import { useStore } from "vuex";
-import { useQuasar } from "quasar";
-import { useRouter } from "vue-router";
+import { Storage } from "@capacitor/storage";
 
 export default {
   name: "Connect",
@@ -82,14 +82,13 @@ export default {
     });
 
     const store = useStore();
-    const $q = useQuasar();
-    const router = useRouter();
+
+    onMounted(async () => {
+      await loadOptions();
+    });
 
     const connect = () => {
-      store.dispatch(
-        "socket/connect",
-        "http://" + state.address + ":" + state.port
-      );
+      store.dispatch("socket/connect", "http://" + state.address);
     };
 
     const disconnect = () => {
@@ -100,6 +99,24 @@ export default {
       state.options.push(state.newAddress + ":" + state.port);
       state.port = 3003;
       state.newAddress = null;
+
+      setTimeout(async () => {
+        await saveOptions();
+      }, 0);
+    };
+
+    const saveOptions = async () => {
+      const json = JSON.stringify(state.options);
+      await Storage.set({
+        key: "options",
+        value: json,
+      });
+    };
+
+    const loadOptions = async () => {
+      const { value } = await Storage.get({ key: "options" });
+      const options = JSON.parse(value);
+      state.options = options;
     };
 
     return { ...toRefs(state), connect, disconnect, addOption };

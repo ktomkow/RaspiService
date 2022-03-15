@@ -2,6 +2,7 @@ import { emitter } from "src/boot/eventBus";
 import { io } from "socket.io-client";
 
 export function connect(context, address) {
+  console.log("address", address);
   const socket = io(address, { transports: ["websocket"] });
   disconnect(context);
 
