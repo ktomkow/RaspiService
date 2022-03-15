@@ -2,14 +2,25 @@
   <q-page class="flex column justify-around">
     <h5 class="text-center">Connect to Raspberry</h5>
     <div class="flex column full-width q-py-xl q-px-lg">
-      <q-select
-        class="q-pb-md"
-        dense
-        outlined
-        label="Service address"
-        v-model="address"
-        :options="options"
-      />
+      <div class="flex row justify-between no-wrap q-mb-md">
+        <q-select
+          style="flex-grow: 2"
+          class="q-pr-sm"
+          dense
+          outlined
+          label="Service address"
+          v-model="address"
+          :options="options"
+        />
+        <q-btn
+          round
+          class="q-ma-none q-pa-none"
+          color="negative"
+          icon="remove"
+          size="md"
+          @click="removeOption"
+        />
+      </div>
       <div class="flex row justify-between no-wrap q-mb-md">
         <q-input
           dense
@@ -105,6 +116,14 @@ export default {
       }, 0);
     };
 
+    const removeOption = () => {
+      state.options = state.options.filter((x) => x !== state.address);
+      state.address = null;
+      setTimeout(async () => {
+        await saveOptions();
+      }, 0);
+    };
+
     const saveOptions = async () => {
       const json = JSON.stringify(state.options);
       await Storage.set({
@@ -116,10 +135,10 @@ export default {
     const loadOptions = async () => {
       const { value } = await Storage.get({ key: "options" });
       const options = JSON.parse(value);
-      state.options = options;
+      state.options = options ?? [];
     };
 
-    return { ...toRefs(state), connect, disconnect, addOption };
+    return { ...toRefs(state), connect, disconnect, addOption, removeOption };
   },
 };
 </script>
